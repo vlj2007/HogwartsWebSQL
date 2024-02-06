@@ -2,6 +2,7 @@ package ru.hogwarts.hogwartswebsql.service;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ru.hogwarts.hogwartswebsql.api.IAvatar;
@@ -19,6 +20,7 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 
 @Service
 @Transactional
@@ -91,6 +93,11 @@ public class AvatarService implements IAvatar {
 
         }
 
+    }
+
+    public List<Avatar> getAll(Integer number, Integer size) {
+        PageRequest pageRequest = PageRequest.of(number - 1, size);
+        return avatarRepository.findAll(pageRequest).getContent();
     }
 
 }

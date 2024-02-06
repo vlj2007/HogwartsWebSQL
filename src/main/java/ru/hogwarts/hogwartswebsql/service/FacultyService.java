@@ -56,4 +56,7 @@ public class FacultyService implements IFaculty {
     public Collection<Faculty> findFacultyByColorIgnoreCase(String color) {
         return facultyRepository.findFacultyByColorIgnoreCase(color);
     }
+
+
+
 }
