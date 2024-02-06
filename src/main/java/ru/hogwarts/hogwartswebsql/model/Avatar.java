@@ -1,5 +1,6 @@
 package ru.hogwarts.hogwartswebsql.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Arrays;
@@ -16,13 +17,11 @@ public class Avatar {
     private String mediaType;
 
     @Lob
+    @JsonIgnore
     private byte[] data;
 
     @OneToOne
-//    @MapsId
-//    @JoinColumn(name = "id")
     private Student student;
-
 
     public Avatar() {
     }
@@ -35,7 +34,6 @@ public class Avatar {
         this.data = data;
         this.student = student;
     }
-
 
     public Long getId() {
         return id;
